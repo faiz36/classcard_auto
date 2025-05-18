@@ -21,7 +21,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 account = get_account()  # 계정 가져오기
 
-print("크롬 드라이브를 불러오고 있습니다 잠시만 기다려주세요!")
+print("크롬 드라이버를 불러오고 있습니다 잠시만 기다려주세요!")
 
 # Chrome 옵션 설정
 chrome_options = Options()
@@ -35,15 +35,15 @@ driver = webdriver.Chrome(options=chrome_options)
 
 # 로그인 시행
 driver.get("https://www.classcard.net/Login")
-id_element = driver.find_element(By.ID, "login_id")
-pw_element = driver.find_element(By.ID, "login_pwd")
+id_element = driver.find_element(By.NAME, "login_id")
+pw_element = driver.find_element(By.NAME, "login_pwd")
 id_element.clear() # Autofill 억제
 id_element.send_keys(account["id"])
 pw_element.send_keys(account["pw"])
 time.sleep(1)
 driver.find_element(
-    By.XPATH,
-    "/html/body/div[1]/div/div/div/div/form/div[3]/a",
+    By.LINK_TEXT,
+    "로그인",
 ).click()  # 로그인 버튼
 time.sleep(1)  # 로딩 대기
 
